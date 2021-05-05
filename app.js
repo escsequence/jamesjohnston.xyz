@@ -6,7 +6,7 @@ const port = 3000;
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
-  res.end('NodeJS server running on Shared Hosting\n');
+  res.end('Change has been made.');
 });
 
 server.listen(port, hostname, () => {
