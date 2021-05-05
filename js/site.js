@@ -1,7 +1,4 @@
 $(document).ready(function() {
-  function isRoot() {
-    return window.location.pathname.replace("/jamesjohnston.xyz", "") == "/";
-  }
   // Random fun
   // $(".fancy-h1").each((i, e) => {
   //   $(e).children().each((ix, ex) => {
