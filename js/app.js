@@ -1,10 +1,5 @@
 var app = angular.module("jamesjohnstonApp", ["ngRoute"]);
 
-app.config(['$locationProvider', function($locationProvider) {
-  $locationProvider.html5Mode(true);
-  $locationProvider.hashPrefix('');
-}]);
-
 app.config(function($routeProvider) {
   $routeProvider
   .when("/", {
@@ -14,7 +9,10 @@ app.config(function($routeProvider) {
   .when("/blog", {
       templateUrl : "views/blog.html",
       controller: "blogController"
-  })
+  });
+
+  $locationProvider.html5Mode(true);
+  $locationProvider.hashPrefix('');
 });
 
 app.controller('navigationController', ['$scope',
