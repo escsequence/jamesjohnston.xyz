@@ -10,4 +10,14 @@ app.config(function($routeProvider) {
   .when("/", {
     templateUrl : "views/index.html"
   })
+  .when("/blog", {
+      templateUrl : "views/blog.html"
+  })
 });
+
+app.controller('NavigationController', ['$scope',
+function($scope) {
+  $scope.isRoot = function() {
+    return window.location.pathname.replace("/jamesjohnston.xyz", "") == "/";
+  }
+}]);
