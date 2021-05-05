@@ -162,6 +162,8 @@ a {
   color: #55BCC9;
   text-decoration: none;
   background-color: transparent;
+  transition: 0.2s all ease;
+  display: inline-block;
 }
 a:hover {
   color: #FC4445;
@@ -10074,12 +10076,15 @@ p.lead {
   border-radius: 100%;
   font-size: 1.5rem;
   margin-right: 1.5rem;
+  transition: 0.2s all ease;
 }
+
 .social-icons .social-icon:last-child {
   margin-right: 0;
 }
 .social-icons .social-icon:hover {
   background-color: #FC4445;
+  transform: scale(1.25);
 }
 
 .dev-icons {
@@ -10127,4 +10132,21 @@ section.resume-section .resume-section-content {
 }
 .color-5 {
   color: #CAFAFE !important;
+}
+
+/* fun */
+.fun-char, .fun-char-invert {
+  display: inline-block;
+  transition: 0.2s all ease;
+}
+
+.fun-char:hover {
+  transform: rotate(20deg);
+  cursor: default;
+
+}
+
+.fun-char-invert:hover {
+  transform: rotate(-20deg);
+  cursor: default;
 }
