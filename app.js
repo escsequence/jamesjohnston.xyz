@@ -1,9 +1,8 @@
-const express = require("express");
-const path = require("path");
-const app = express();
-
-const hostname = '127.0.0.1';
-const port = 3000;
+//
+// const app = express();
+//
+// const hostname = '127.0.0.1';
+// const port = 3000;
 
 // const server = http.createServer((req, res) => {
 //   res.statusCode = 200;
@@ -14,14 +13,14 @@ const port = 3000;
 // server.listen(port, hostname, () => {
 //   console.log(`Server running at http://${hostname}:${port}/`);
 // });
-
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "pug");
-app.use(express.static(path.join(__dirname, "public")));
-
-app.get("/", (req, res) => {
-  res.render("index", { title: "Home" });
-});
+//
+// app.set("views", path.join(__dirname, "views"));
+// app.set("view engine", "pug");
+// app.use(express.static(path.join(__dirname, "public")));
+//
+// app.get("/", (req, res) => {
+//   res.render("index", { title: "Home" });
+// });
 
 // app.get('/', (req, res) => {
 //   res.write(`<!doctype html><html><head>
@@ -32,4 +31,37 @@ app.get("/", (req, res) => {
 //   res.end();
 // });
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
+
+
+  /**
+   * Required External Modules
+   */
+   const express = require("express");
+   const path = require("path");
+
+  /**
+   * App Variables
+   */
+   const app = express();
+   const port = process.env.PORT || "8000";
+
+  /**
+   *  App Configuration
+   */
+   app.set("views", path.join(__dirname, "views"));
+   app.set("view engine", "pug");
+   app.use(express.static(path.join(__dirname, "public")));
+
+  /**
+   * Routes Definitions
+   */
+   app.get("/", (req, res) => {
+      res.render("index", { title: "Home" });
+   });
+
+  /**
+   * Server Activation
+   */
+   app.listen(port, () => {
+     console.log(`Listening to requests on http://localhost:${port}`);
+  });
