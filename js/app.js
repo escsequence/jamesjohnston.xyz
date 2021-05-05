@@ -1,6 +1,6 @@
 var app = angular.module("jamesjohnstonApp", ["ngRoute"]);
 
-app.config(function($routeProvider) {
+app.config(function($routeProvider, $locationProvider) {
   $routeProvider
   .when("/", {
     templateUrl : "views/index.html",
@@ -9,7 +9,7 @@ app.config(function($routeProvider) {
   .when("/blog", {
       templateUrl : "views/blog.html",
       controller: "blogController"
-  });
+  })
 
   $locationProvider.html5Mode(true);
   $locationProvider.hashPrefix('');
