@@ -55,9 +55,18 @@
   /**
    * Routes Definitions
    */
-   app.get("/", (req, res) => {
-      res.render("index", { title: "Home" });
-   });
+  //  app.get("/", (req, res) => {
+  //     res.render("index", { title: "Home" });
+  //  });
+  //
+
+  app.get('/', (req, res) => {
+    res.render("index", {title: "Home"});
+  });
+
+  app.get('*', (req, res) => {
+    res.render("error", {title: "404"});
+  });
 
   /**
    * Server Activation
