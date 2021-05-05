@@ -24,7 +24,6 @@ function($scope) {
 
 app.controller('indexController', ['$scope',
 function($scope) {
-  console.log("Index page!")
 
   // Smooth scrolling using jQuery easing
   $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
@@ -34,16 +33,20 @@ function($scope) {
           location.hostname == this.hostname
       ) {
           var target = $(this.hash);
-          target = target.length
-              ? target
-              : $("[name=" + this.hash.slice(1) + "]");
+          var hash_target = this.hash.replace("#", "")
+          target = target.length ? target : $("[name=" + this.hash.slice(1) + "]");
           if (target.length) {
               $("html, body").animate(
                   {
                       scrollTop: target.offset().top,
                   },
                   1000,
-                  "easeInOutExpo"
+                  "easeInOutExpo",
+                  function() {
+                    if (hash_target == "blog") {
+                      document.location.href = "/blog"
+                    }
+                  }
               );
               return false;
           }
