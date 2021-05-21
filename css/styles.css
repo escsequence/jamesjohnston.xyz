@@ -10150,3 +10150,7 @@ section.resume-section .resume-section-content {
   transform: rotate(-20deg);
   cursor: default;
 }
+
+.blog-post img {
+  max-width: 100%;
+}
