@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <div class="col-md-12" ng-if="data_loaded">
+    <h1>{{ pt.title }}</h1>
+    <div ng-bind-html="pt.content"></div>
+    <!-- <p>{{ raw_content }}</p> -->
+    <div class="mb-2 mt-2">
+      <span>
+        <span ng-repeat="tg in pt.tags">
+          <span class="badge badge-secondary {{tg.color}}">{{ tg.name }}</span>
+        </span>
+      </span>
+      <span class="float-right">
+        <span class="font-weight-bold">Date last modified:</span> {{ pt.date_modified }}
+      </span>
+    </div>
+  </div>
+</div>

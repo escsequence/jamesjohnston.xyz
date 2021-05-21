@@ -5,7 +5,7 @@
             <span class="text-primary">Johnston</span>
         </h1>
         <div class="subheading mb-5">
-            <a href="mailto:me@jamesjohnston.xyz">me@jamesjohnston.xyz</a>
+            <a href="mailto:admin@jamesjohnston.xyz">me@jamesjohnston.xyz</a>
         </div>
         <p class="lead mb-5">I am a non-traditional senior at University Wisconsin - Whitewater for Computer Science / Data Science. I have had the opporutnity to work in the Information Technology industry for years and am currently aspiring for a software developer role, I want to make the world a better place by contributing to the health industry.</p>
         <div class="social-icons">
@@ -150,5 +150,23 @@
     </div>
 </section>
 <hr class="m-0" />
-<!-- <section class="resume-section" id="blog">
-</section> -->
+<section class="resume-section" id="blog">
+  <div class="resume-section-content" ng-controller="blogController">
+    <div class="col-md-12">
+      <div ng-repeat="pt in pts" class="post-display mt-5">
+        <h1 style="max-width:100%;white-space: nowrap;text-overflow: ellipsis;">{{ pt.title }}</h1>
+        <p style="max-height: 120px;overflow:hidden;">{{ pt.description }}</p>
+        <div>
+          <span ng-repeat="tg in pt.tags">
+            <span class="badge badge-secondary {{tg.color}}">{{ tg.name }}</span>
+          </span>
+          <div class="float-right">
+            <a href="../blog/{{pt.pid}}">read more</a>
+          </div>
+        </div>
+        <div class="mb-5"></div>
+        <hr/>
+      </div>
+    </div>
+  </div>
+</section>
