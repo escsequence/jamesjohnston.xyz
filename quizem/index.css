@@ -1,0 +1,22 @@
+/*
+help:
+https://stackoverflow.com/questions/46777704/add-up-down-arrows-to-bootstrap-accordion/46778779
+*/
+
+.panel-title {
+  position: relative;
+}
+
+.panel-title::after {
+  content: "\f107";
+  color: white;
+  top: -4px;
+  right: 8px;
+  font-size: 2em;
+  position: absolute;
+  font-family: "FontAwesome"
+}
+
+.panel-title[aria-expanded="true"]::after {
+  content: "\f106";
+}
