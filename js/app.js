@@ -18,7 +18,6 @@ app.config(function($routeProvider, $locationProvider) {
       templateUrl : "views/blog-post.html",
       controller: "blogPostController"
   })
-  .when("/quizem", {redirectTo:'/projects/quizem'})
   .otherwise({redirectTo:'/404'});
   $locationProvider.html5Mode(true);
   $locationProvider.hashPrefix('');
