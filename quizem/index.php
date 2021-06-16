@@ -187,7 +187,7 @@
                               echo "<td>" .  $user_answer . "</td>";
                               echo "<td>" . $correct_answer . "</td>";
 
-                              if (strval($user_answer) == strval($correct_answer)) {
+                              if (trim(strtolower(strval($user_answer))) == trim(strtolower(strval($correct_answer)))) {
                                 $correct_answers++;
                                 $answer_is_correct = true;
                               }
