@@ -72,19 +72,13 @@
             <form method="post" id="final-exam-form">
               <div id="qq-n" class="card mb-4">
                 <div class="card-header bg-secondary text-white">
-                  Name
+                  Notice
                 </div>
                 <div class="card-body">
-                  <div class="form-group">
-                    <label for="name-input" class="mb-2">Name</label>
-                    <input type="name" class="form-control" id="name-input" placeholder="Enter first name" name="name">
-                  </div>
-                  <div class="area-for-warning">
-
-                  </div>
-                  <div class="fw-bold mt-3">
+                  <div class="fw-bold">
                     Please note that ALL the fields below are required fields unless specified.
                   </div>
+                  <div class="area-for-warning"></div>
                 </div>
               </div>
               <?php
@@ -125,7 +119,7 @@
             $count = $qms_cdt["qc"];
             $user_answers = array();
             $correct_answers = 0;
-            $name = $_POST['name'];
+            //$name = $_POST['name'];
 
             $valid_data = true;
 
@@ -204,7 +198,7 @@
                       echo "<hr />";
                       echo "<div>";
                       $percent = round($correct_answers / $count * 100);
-                      echo "<div><span class='fw-bold'>Name:</span> $name</div>";
+                      //echo "<div><span class='fw-bold'>Name:</span> $name</div>";
                       echo "<div>You scored $correct_answers out of $count questions correct for a score of <span class='fw-bold'>$percent%</span>.</div>";
                       echo "</div>";
                     echo "</div>";
@@ -502,23 +496,23 @@
         var errors = 0;
 
         // Lets check and see if the name field is okay.
-        if ($("#name-input").val().length < 1) {
-
-          // Add our custom error display
-          $("#qq-n").find(".card-body .area-for-warning").append("<div class='required text-danger mt-2' id='required-n'>This field is required, please enter your name.</div>");
-
-          // Add in some information for the user when we alert them.
-          msg += "Name field is missing.\n"
-
-          // Add to the error count
-          errors++;
-
-          // Add an event handler to remove the error message on screen if fixed.
-          $("#name-input").change(function() {
-            if ($(this).val().length > 0)
-              resolve_question("n");
-          });
-        }
+        // if ($("#name-input").val().length < 1) {
+        //
+        //   // Add our custom error display
+        //   $("#qq-n").find(".card-body .area-for-warning").append("<div class='required text-danger mt-2' id='required-n'>This field is required, please enter your name.</div>");
+        //
+        //   // Add in some information for the user when we alert them.
+        //   msg += "Name field is missing.\n"
+        //
+        //   // Add to the error count
+        //   errors++;
+        //
+        //   // Add an event handler to remove the error message on screen if fixed.
+        //   $("#name-input").change(function() {
+        //     if ($(this).val().length > 0)
+        //       resolve_question("n");
+        //   });
+        // }
 
         // Loop through to find any questions that are missing data, these are all the non-static questions.
         $(".qq").each((i, e) => {
