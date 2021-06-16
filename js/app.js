@@ -18,6 +18,11 @@ app.config(function($routeProvider, $locationProvider) {
       templateUrl : "views/blog-post.html",
       controller: "blogPostController"
   })
+  .when("/quizem", {
+    redirectTo: function(obj,path,search) {
+        window.location.href=path;
+    }
+  })
   .otherwise({redirectTo:'/404'});
   $locationProvider.html5Mode(true);
   $locationProvider.hashPrefix('');

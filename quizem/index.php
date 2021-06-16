@@ -225,185 +225,185 @@
 
                 // Try to save quiz in db here
                 //echo $qms;
-                //$generated_quiz = QM_VERIFY($qms);
+                $generated_quiz = QM_VERIFY($qms);
 
-                // $qms_spl_eol = explode(PHP_EOL, $qms);
-                // $parsed_content = array();
-                // $set_qc = false;
-                // $set_an = false;
-                // $set_qi = false;
-                // $set_qt = false;
-                // $set_qa = false;
-                // $disabled = true;
-                //
-                // $size_mismatch = "";
-                // $no_values = false;
-                //
-                // if (strlen($qms) > 1) {
-                //   for($i = 0; $i < count($qms_spl_eol); $i++) {
-                //     $qms_spl_ei = explode("=", $qms_spl_eol[$i]);
-                //     for ($ix = 0; $ix < count($qms_spl_ei); $ix++) {
-                //       switch($qms_spl_ei[$ix]) {
-                //         case "question_count":
-                //           if (!$set_qc) {
-                //             $set_qc = true;
-                //             $parsed_content["qc"] = $qms_spl_ei[$ix+1];
-                //           }
-                //           break;
-                //         case "question_info":
-                //           if (!$set_qi) {
-                //             $qi_list_raw = $qms_spl_ei[$ix+1];
-                //             $qi_list_raw_stripped = str_replace("(", "", $qi_list_raw);
-                //             $qi_list_raw_stripped = str_replace(")", "", $qi_list_raw_stripped);
-                //             $qi_list = explode(",", $qi_list_raw_stripped);
-                //             $parsed_content["qi"] = array();
-                //             for ($ia = 0; $ia < count($qi_list); $ia++) {
-                //               $qi_itm = $qi_list[$ia];
-                //               array_push($parsed_content["qi"], $qi_itm);
-                //             }
-                //             $set_qi = true;
-                //           }
-                //           break;
-                //         case "question_type":
-                //           if (!$set_qt) {
-                //             $qt_list_raw = $qms_spl_ei[$ix+1];
-                //             $qt_list_raw_stripped = str_replace("(", "", $qt_list_raw);
-                //             $qt_list_raw_stripped = str_replace(")", "", $qt_list_raw_stripped);
-                //             $qt_list = explode(",", $qt_list_raw_stripped);
-                //             $parsed_content["qt"] = array();
-                //             $invalid_qt = false;
-                //             for ($ia = 0; $ia < count($qt_list); $ia++) {
-                //               $qt_itm = trim(str_replace("\"", "", $qt_list[$ia]));
-                //               if ($qt_itm == "t/f" || $qt_itm == "multiple" || $qt_itm == "input") {
-                //                 array_push($parsed_content["qt"], $qt_itm);
-                //               } else {
-                //                 $invalid_qt = true;
-                //               }
-                //             }
-                //
-                //             if (!$invalid_qt)
-                //               $set_qt = true;
-                //           }
-                //           break;
-                //         case "question_answers":
-                //           if (!$set_qa) {
-                //             $qa_list_raw = $qms_spl_ei[$ix+1];
-                //             $qa_list = explode(",", $qa_list_raw);
-                //             $parsed_content["qa"] = array();
-                //             for ($ia = 0; $ia < count($qa_list); $ia++) {
-                //               $qa_itm = $qa_list[$ia];
-                //               if (str_contains($qa_itm, "(") && str_contains($qa_itm, ")")) {
-                //                 $qa_itm = str_replace("(", "", $qa_itm);
-                //                 $qa_itm = str_replace(")", "", $qa_itm);
-                //                 $qa_x_list = explode(":", $qa_itm);
-                //                 $parsed_content["qa"][$ia] = array();
-                //                 for ($iax = 0; $iax < count($qa_x_list); $iax++) {
-                //                   array_push($parsed_content["qa"][$ia], $qa_x_list[$iax]);
-                //                 }
-                //               } else {
-                //                 $qa_itm = str_replace("(", "", $qa_itm);
-                //                 $qa_itm = str_replace(")", "", $qa_itm);
-                //                 array_push($parsed_content["qa"], $qa_itm);
-                //               }
-                //
-                //             }
-                //             $set_qa = true;
-                //           }
-                //           break;
-                //         case "answers":
-                //           if (!$set_an) {
-                //             $answers_list_raw = $qms_spl_ei[$ix+1];
-                //             $answers_list_raw_stripped = str_replace("(", "", $answers_list_raw);
-                //             $answers_list_raw_stripped = str_replace(")", "", $answers_list_raw_stripped);
-                //             $answers_list = explode(",", $answers_list_raw_stripped);
-                //             $parsed_content["an"] = array();
-                //             for ($ia = 0; $ia < count($answers_list); $ia++) {
-                //               array_push($parsed_content["an"], $answers_list[$ia]);
-                //             }
-                //             $set_an = true;
-                //           }
-                //           break;
-                //       }
-                //     }
-                //   }
-                //   $generated_quiz = ($set_an && $set_qa && $set_qc && $set_qi && $set_qt && $set_qa);
-                // } else {
-                //   $generated_quiz = false;
-                //   $no_values = true;
-                // }
-                //
-                //
-                //
-                // if ($generated_quiz) {
-                //   if (count($parsed_content["an"]) > $parsed_content["qc"]) {
-                //     $size_mismatch .= "answers, ";
-                //     $generated_quiz = false;
-                //   }
-                //
-                //   if (count($parsed_content["qa"]) > $parsed_content["qc"]) {
-                //     $size_mismatch .= "question_answers, ";
-                //     $generated_quiz = false;
-                //   }
-                //
-                //   if (count($parsed_content["qt"]) > $parsed_content["qc"]) {
-                //     $size_mismatch .= "question_type, ";
-                //     $generated_quiz = false;
-                //   }
-                //
-                //   if (count($parsed_content["qi"]) > $parsed_content["qc"]) {
-                //     $size_mismatch .= "question_info, ";
-                //     $generated_quiz = false;
-                //   }
-                //
-                // }
-                //
-                // if ($generated_quiz) {
-                //   $generated_quiz_id = QM_INSERT($db, $qms);
-                //   echo "<div class='text-success'><i class='fa fa-check'></i> Quiz generated</div>";
-                //   echo "<div><span class='fw-bold'>Quizem ID:</span> $generated_quiz_id<div>";
-                //   echo "<hr />";
-                //   echo "<a href='./?qid=$generated_quiz_id'>Link to start quiz</a>";
-                // } else {
-                //   echo "<div class='text-danger'><i class='fa fa-times'></i> Invalid data in QMS provided.</div>";
-                //   echo "<div><span class='fw-bold'>See error information below, then go back and update the QMS entered. </span><div>";
-                //   echo "<hr />";
-                //   if (!$no_values) {
-                //
-                //     echo "<ul>";
-                //     if (!$set_qc) {
-                //       echo "<li>Missing or invalid <code>question_count</code> section.</li>";
-                //     }
-                //
-                //     if (!$set_qi) {
-                //       echo "<li>Missing or invalid <code>question_info</code> section.</li>";
-                //     }
-                //
-                //     if (!$set_qa) {
-                //       echo "<li>Missing or invalid <code>question_answers</code> section.</li>";
-                //     }
-                //
-                //     if (!$set_qt) {
-                //       echo "<li>Missing or invalid <code>question_type</code> section.</li>";
-                //     }
-                //
-                //     if (!$set_an) {
-                //       echo "<li>Missing or invalid <code>answers</code> section.</li>";
-                //     }
-                //
-                //     if ($size_mismatch != "") {
-                //       echo "<li>Array size mis-match of section(s): $size_mismatch</li>";
-                //     }
-                //
-                //     echo "</ul>";
-                //   } else {
-                //       echo "<div>No value entered in QMS form.</div>";
-                //   }
-                //
-                //
-                //   //echo "Work in progress. :/";
-                // }
-                echo "Whoops. Generating a Quizem is currently disabled. Please check back another time.";
-                //echo generate_qid();
+                $qms_spl_eol = explode(PHP_EOL, $qms);
+                $parsed_content = array();
+                $set_qc = false;
+                $set_an = false;
+                $set_qi = false;
+                $set_qt = false;
+                $set_qa = false;
+                $disabled = true;
+
+                $size_mismatch = "";
+                $no_values = false;
+
+                if (strlen($qms) > 1) {
+                  for($i = 0; $i < count($qms_spl_eol); $i++) {
+                    $qms_spl_ei = explode("=", $qms_spl_eol[$i]);
+                    for ($ix = 0; $ix < count($qms_spl_ei); $ix++) {
+                      switch($qms_spl_ei[$ix]) {
+                        case "question_count":
+                          if (!$set_qc) {
+                            $set_qc = true;
+                            $parsed_content["qc"] = $qms_spl_ei[$ix+1];
+                          }
+                          break;
+                        case "question_info":
+                          if (!$set_qi) {
+                            $qi_list_raw = $qms_spl_ei[$ix+1];
+                            $qi_list_raw_stripped = str_replace("(", "", $qi_list_raw);
+                            $qi_list_raw_stripped = str_replace(")", "", $qi_list_raw_stripped);
+                            $qi_list = explode(",", $qi_list_raw_stripped);
+                            $parsed_content["qi"] = array();
+                            for ($ia = 0; $ia < count($qi_list); $ia++) {
+                              $qi_itm = $qi_list[$ia];
+                              array_push($parsed_content["qi"], $qi_itm);
+                            }
+                            $set_qi = true;
+                          }
+                          break;
+                        case "question_type":
+                          if (!$set_qt) {
+                            $qt_list_raw = $qms_spl_ei[$ix+1];
+                            $qt_list_raw_stripped = str_replace("(", "", $qt_list_raw);
+                            $qt_list_raw_stripped = str_replace(")", "", $qt_list_raw_stripped);
+                            $qt_list = explode(",", $qt_list_raw_stripped);
+                            $parsed_content["qt"] = array();
+                            $invalid_qt = false;
+                            for ($ia = 0; $ia < count($qt_list); $ia++) {
+                              $qt_itm = trim(str_replace("\"", "", $qt_list[$ia]));
+                              if ($qt_itm == "t/f" || $qt_itm == "multiple" || $qt_itm == "input") {
+                                array_push($parsed_content["qt"], $qt_itm);
+                              } else {
+                                $invalid_qt = true;
+                              }
+                            }
+
+                            if (!$invalid_qt)
+                              $set_qt = true;
+                          }
+                          break;
+                        case "question_answers":
+                          if (!$set_qa) {
+                            $qa_list_raw = $qms_spl_ei[$ix+1];
+                            $qa_list = explode(",", $qa_list_raw);
+                            $parsed_content["qa"] = array();
+                            for ($ia = 0; $ia < count($qa_list); $ia++) {
+                              $qa_itm = $qa_list[$ia];
+                              if (str_contains($qa_itm, "(") && str_contains($qa_itm, ")")) {
+                                $qa_itm = str_replace("(", "", $qa_itm);
+                                $qa_itm = str_replace(")", "", $qa_itm);
+                                $qa_x_list = explode(":", $qa_itm);
+                                $parsed_content["qa"][$ia] = array();
+                                for ($iax = 0; $iax < count($qa_x_list); $iax++) {
+                                  array_push($parsed_content["qa"][$ia], $qa_x_list[$iax]);
+                                }
+                              } else {
+                                $qa_itm = str_replace("(", "", $qa_itm);
+                                $qa_itm = str_replace(")", "", $qa_itm);
+                                array_push($parsed_content["qa"], $qa_itm);
+                              }
+
+                            }
+                            $set_qa = true;
+                          }
+                          break;
+                        case "answers":
+                          if (!$set_an) {
+                            $answers_list_raw = $qms_spl_ei[$ix+1];
+                            $answers_list_raw_stripped = str_replace("(", "", $answers_list_raw);
+                            $answers_list_raw_stripped = str_replace(")", "", $answers_list_raw_stripped);
+                            $answers_list = explode(",", $answers_list_raw_stripped);
+                            $parsed_content["an"] = array();
+                            for ($ia = 0; $ia < count($answers_list); $ia++) {
+                              array_push($parsed_content["an"], $answers_list[$ia]);
+                            }
+                            $set_an = true;
+                          }
+                          break;
+                      }
+                    }
+                  }
+                  $generated_quiz = ($set_an && $set_qa && $set_qc && $set_qi && $set_qt && $set_qa);
+                } else {
+                  $generated_quiz = false;
+                  $no_values = true;
+                }
+
+                if ($generated_quiz) {
+                  if (count($parsed_content["an"]) > $parsed_content["qc"]) {
+                    $size_mismatch .= "answers, ";
+                    $generated_quiz = false;
+                  }
+
+                  if (count($parsed_content["qa"]) > $parsed_content["qc"]) {
+                    $size_mismatch .= "question_answers, ";
+                    $generated_quiz = false;
+                  }
+
+                  if (count($parsed_content["qt"]) > $parsed_content["qc"]) {
+                    $size_mismatch .= "question_type, ";
+                    $generated_quiz = false;
+                  }
+
+                  if (count($parsed_content["qi"]) > $parsed_content["qc"]) {
+                    $size_mismatch .= "question_info, ";
+                    $generated_quiz = false;
+                  }
+
+                }
+
+                if ($generated_quiz) {
+                  $generated_quiz_id = QM_INSERT($db, $qms);
+                  echo "<div class='text-success'><i class='fa fa-check'></i> Quiz generated</div>";
+                  echo "<div><span class='fw-bold'>Quizem ID:</span> $generated_quiz_id<div>";
+                  echo "<hr />";
+                  echo "<a href='./?qid=$generated_quiz_id'>Link to start quiz</a>";
+                } else {
+                  echo "<div class='text-danger'><i class='fa fa-times'></i> Invalid data in QMS provided.</div>";
+                  echo "<div><span class='fw-bold'>See error information below, then go back and update the QMS entered. </span><div>";
+                  echo "<hr />";
+                  if (!$no_values) {
+
+                    echo "<ul>";
+                    if (!$set_qc) {
+                      echo "<li>Missing or invalid <code>question_count</code> section.</li>";
+                    }
+
+                    if (!$set_qi) {
+                      echo "<li>Missing or invalid <code>question_info</code> section.</li>";
+                    }
+
+                    if (!$set_qa) {
+                      echo "<li>Missing or invalid <code>question_answers</code> section.</li>";
+                    }
+
+                    if (!$set_qt) {
+                      echo "<li>Missing or invalid <code>question_type</code> section.</li>";
+                    }
+
+                    if (!$set_an) {
+                      echo "<li>Missing or invalid <code>answers</code> section.</li>";
+                    }
+
+                    if ($size_mismatch != "") {
+                      echo "<li>Array size mis-match of section(s): $size_mismatch</li>";
+                    }
+
+                    echo "</ul>";
+                  } else {
+                      echo "<div>No value entered in QMS form.</div>";
+                  }
+                }
+                echo "<hr />";
+                echo "<span>Here is an example of proper QMS syntax for `test-quiz` qid:</span>";
+                echo "<div><code>question_count=5</code><br />
+                           <code>answers=(0,0,3,101,2)</code><br />
+                           <code>question_info=(\"Question #1 is true.\", \"Question #2 is false.\", \"The right selection is 3.\", \"The correct answer is `101`.\", \"The correct answer is 1+1\")</code><br />
+                           <code>question_type=(\"t/f\", \"t/f\", \"multiple\", \"input\", \"input\")</code><br />
+                           <code> question_answers=(0, 1, (1:2:3:4:5:6), null, null)</code></div>";
                 echo "</div>";
               echo "</div>";
             echo "</div>";
