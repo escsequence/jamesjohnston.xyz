@@ -23,8 +23,10 @@ app.config(function($routeProvider, $locationProvider) {
         window.location.href=path;
     }
   })
-  .when("/resume", {
-    redirectTo: '../jamesjohnstonresume.pdf'
+  .when("/r/:q", {
+    redirectTo: function(obj, path, search) {
+      window.location.href=path.split(obj.q)[0] + "?u=" + obj.q;
+    }
   })
   .otherwise({redirectTo:'/404'});
   $locationProvider.html5Mode(true);

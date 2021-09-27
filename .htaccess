@@ -6,5 +6,5 @@ RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !^/quizem/?$
-RewriteCond %{REQUEST_URI} !^/mailer
+RewriteCond %{REQUEST_URI} !^/r/?$
 RewriteRule ^(.*)$ /#/$1 [L]
