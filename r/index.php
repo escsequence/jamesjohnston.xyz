@@ -36,6 +36,7 @@
   $overthelimits = false;
   $doesnotexist = false;
   $showpolicy = false;
+  $invalidinput = false;
   try {
     if (isset($_GET['x'])) {
       if ($_GET['x'] == 'policy') {
@@ -58,14 +59,39 @@
       die();
     } else {
 
-      if (isset($_POST['n']) && isset($_POST['a'])) {
+      if (isset($_POST['n']))
+        $modifiedName = str_replace(' ', '-', $_POST['n']); // Change spaces to dashes
+      else
+        $modifiedName = "";
+
+      if (strlen($modifiedName) < 1) {
+        // Generate a random name
+        $modifiedName = strval(generateRandomName(8));
+      }
+
+      $modifiedName = preg_replace('/[^A-Za-z0-9\-]/', '', $modifiedName); //Remove special characters
+
+      if (strlen($modifiedName) < 5) {
+        $invalidinput = true;
+        throw new Exception("Invalid input: name not long enough.");
+      }
+
+      if (isset($_POST['a'])) {
+        if (strlen($_POST['a']) < 15) {
+          $invalidinput = true;
+          throw new Exception("Invalid input: URL not long enough.");
+        }
+      }
+
+      if (strlen($modifiedName) > 1 && isset($_POST['a'])) {
         if (checkIP($db, $ip)) {
-          $query = "INSERT INTO lookup VALUES (:url, :name);";
-          $query_params = Array(":name" => $_POST['n'], ":url" => $_POST['a']);
+          $query = "INSERT INTO lookup (url, value) VALUES (:url, :name);";
+
+          $query_params = Array(":name" => $modifiedName, ":url" => $_POST['a']);
           $statement = $db->prepare($query);
           $statement->execute($query_params);
           $added_url = $_POST['a'];
-          $added_name = $_POST['n'];
+          $added_name = $modifiedName;
           $added_new = true;
         } else {
           $overthelimits = true;
@@ -93,19 +119,19 @@
     <body>
       <div class="container" style="max-width:680px">
         <h1 class="mt-5">Generate a shortened link.</h1>
-        <p class="lead">Enter in the follow form to generate a shortened link.</p>
+        <p class="lead">Enter in the following form to generate a shortened link, a random name/code will be generated if nothing is provided.</p>
         <p>
           <form action="./" method="post">
-            <input type="text" name="n" placeholder="name for link" />
-            <input type="text" name="a" value="" placeholder="URL" />
-            <input type="submit" value="Generate!">
+            <input type="text" name="a" value="" placeholder="URL" class="form-control form-control-lg" />
+            <input type="text" name="n" placeholder="name/access code (optional)" class="form-control mt-2" />
+            <input type="submit" value="Generate!" class="mt-2 btn btn-primary form-control">
           </form>
           <?php
             //echo "Hello $ip";
             if ($added_new) {
               echo "<hr />";
               echo "<p class='text-success'>Link generated!</p>";
-              echo "<input type='text' value='https://jamesjohnston.xyz/r/$added_name'/>";
+              echo "<input type='text' class='form-control w-100' value='https://jamesjohnston.xyz/r/$added_name'/>";
             } else if ($overthelimits) {
               echo "<hr />";
               echo "<p class='text-danger h5'>Unable to generate link, you've reached the daily limit.</p>";
@@ -127,6 +153,16 @@
                 echo "<li>Have fun. :)</li>";
               echo "</ol>";
               echo "</div>";
+            } else if ($invalidinput) {
+              echo "<hr />";
+              echo "<p class='text-danger h5'>Form content is invalid.</p>";
+              echo "<p>Requirements:</p>";
+              echo "<ol>";
+                echo "<li>Name/access-code can only contain alphabetic and numeric characters.</li>";
+                echo "<li>Name/access-code must be at-least 5 characters in length (a random one is generated if none is specified).</li>";
+                echo "<li>URL must be an existing web page and match a typical website format (for example: <strong>https://www.jamesjohnston.xyz</strong>).</li>";
+              echo "</ol>";
+              echo "<p>Please adjust input data and try again. Look at the <a href='?x=policy'>website policy</a> if you have any other questions.</p>";
             }
           ?>
         </p>

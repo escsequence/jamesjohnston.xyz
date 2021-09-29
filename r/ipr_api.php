@@ -18,7 +18,7 @@
     $ret = getAll($query, $db, $query_params);
 
     if (count($ret) > 0) {
-      
+
       // Get the curent date according to mysql
       $querycd = "SELECT DATE(NOW()) AS 'cd';";
       $ret2 = getAll($querycd, $db, NULL);
@@ -60,6 +60,15 @@
       $statement->execute($query_params);
       return true;
     }
+  }
+
+  function generateRandomName($amt) {
+    $chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+    $ret = '';
+    for ($i = 0; $i < $amt; $i++) {
+      $ret .= $chars[rand(0, strlen($chars)-1)];
+    }
+    return $ret;
   }
 
 ?>
