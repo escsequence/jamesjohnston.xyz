@@ -104,7 +104,7 @@
             //echo "Hello $ip";
             if ($added_new) {
               echo "<hr />";
-              echo "<p>Link generated <a href='http://localhost/r/$added_name'>here</a></p>";
+              echo "<p class='text-success'>Link generated!</p>";
               echo "<input type='text' value='http://localhost/r/$added_name'/>";
             } else if ($overthelimits) {
               echo "<hr />";
