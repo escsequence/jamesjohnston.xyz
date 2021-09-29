@@ -46,7 +46,7 @@
     if (isset($_GET['u'])) {
       $u_value = $_GET['u'];
       $query = "SELECT url FROM lookup WHERE value = :value;";
-      $query_params = Array("value" => $u_value);
+      $query_params = Array(":value" => $u_value);
       $result = getAll($query, $db, $query_params);
       if (count($result) < 1) {
         $doesnotexist = true;
@@ -60,8 +60,8 @@
 
       if (isset($_POST['n']) && isset($_POST['a'])) {
         if (checkIP($db, $ip)) {
-          $query = "INSERT INTO lookup VALUES (:name, :value);";
-          $query_params = Array("name" => $_POST['n'], "value" => $_POST['a']);
+          $query = "INSERT INTO lookup VALUES (:url, :name);";
+          $query_params = Array(":name" => $_POST['n'], ":url" => $_POST['a']);
           $statement = $db->prepare($query);
           $statement->execute($query_params);
           $added_url = $_POST['a'];
@@ -105,7 +105,7 @@
             if ($added_new) {
               echo "<hr />";
               echo "<p class='text-success'>Link generated!</p>";
-              echo "<input type='text' value='http://localhost/r/$added_name'/>";
+              echo "<input type='text' value='https://jamesjohnston.xyz/r/$added_name'/>";
             } else if ($overthelimits) {
               echo "<hr />";
               echo "<p class='text-danger h5'>Unable to generate link, you've reached the daily limit.</p>";
