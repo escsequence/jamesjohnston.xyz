@@ -23,6 +23,10 @@ app.config(function($routeProvider, $locationProvider) {
         window.location.href=path;
     }
   })
+  .when("/pg/:pid", {
+    templateUrl : "views/playground.html",
+    controller: "playgroundController"
+  })
   .when("/r/:q", {
     redirectTo: function(obj, path, search) {
       window.location.href=path.split(obj.q)[0] + "?u=" + obj.q;
@@ -114,4 +118,17 @@ app.controller('blogPostController', ['$scope', '$http', '$routeParams', '$locat
         $location.url('/404');
       }
   });
+}]);
+
+app.controller('playgroundController', ['$scope', '$http', '$routeParams', '$location', '$sce', function($scope, $http, $routeParams, $location, $sce) {
+  document.getElementById($routeParams.pid).scrollIntoView();
+
+
+  $("#tm1btn").on("click", function() {
+    var $ta = $("#tm1ta");
+    let text = $ta.val();
+    let r = $("#tm1r").val();
+    let w = $("#tm1w").val();
+    $ta.val(text.replaceAll(r, w));
+  })
 }]);
